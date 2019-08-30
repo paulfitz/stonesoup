@@ -17,10 +17,10 @@
                 [bounds[2], pt[0]].max,
                 [bounds[3], pt[1]].max]
       mkr << {
-            :point => pt, 
+            :point => pt,
            :info_bubble => show_link(e),
            :title => e.name,
-           :icon => icon, 
+           :icon => icon,
            :icon_size => [22,22]
        }
       @have_something = true
@@ -50,7 +50,7 @@
 <script>
 function show_map(){
 var name = "<%= j map_id %>";
-
+var orgs = <%= MultiJson.dump(orgs, :only => [:id, :latitude, :longitude, :name]) %>;
 /**  solidarity-specific part starts here   */
 var x1 = <%= j x1 %>;
 var x2 = <%= j x2 %>;
@@ -67,7 +67,7 @@ var logo_control = L.Control.extend({
         container.innerHTML =
 		'<a href="http://mapbox.com/" class="mapbox-logo" ' +
 		'target="_blank">MapBox</a>';
-    
+
         return container;
         }
 });
@@ -82,7 +82,7 @@ var mapbox =
   'http://{s}.tiles.mapbox.com/v4/solidarityeconomy.d591ea8d' +
   '/{z}/{x}/{y}.png?access_token={accessToken}'
 
-var attrib = 
+var attrib =
 	"<a href='https://www.mapbox.com/about/maps/' " +
 	    "target='_blank'>&copy; Mapbox &copy; " +
 	    "OpenStreetMap</a> <a class='mapbox-improve-map' " +
@@ -93,7 +93,7 @@ L.tileLayer(mapbox, {
     maxZoom: 18,
     accessToken: mapbox_accessToken
 }).addTo(map);
-    
+
 /**  solidarity-specific part ends here   */
 
 /****
