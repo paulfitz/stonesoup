@@ -1,0 +1,33 @@
+on: push
+name: New workflow
+jobs:
+  build:
+    name: maddox/actions/ssh@6fc6694b013badc932fb2a6ec6edfa4e629254cf
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: maddox/actions/ssh@6fc6694b013badc932fb2a6ec6edfa4e629254cf
+      uses: maddox/actions/ssh@6fc6694b013badc932fb2a6ec6edfa4e629254cf
+      env:
+        HOST: ${{ secrets.HOST }}
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
+        USER: ${{ secrets.USER }}
+      with:
+        args: ./deploy.sh ${{ github.ref }}
+    - name: Filters for GitHub Actions
+      uses: actions/bin/filter@712ea355b0921dd7aea27d81e247c48d0db24ee4
+      with:
+        args: branch ussen_*
+    - name: GitHub Action for Slack-1
+      uses: Ilshidur/action-slack@1ee0e72f5aea6d97f26d4a67da8f4bc5774b6cc7
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      with:
+        args: 'deployment finished: ${{ github.ref }}'
+    - name: GitHub Action for Slack
+      uses: Ilshidur/action-slack@1ee0e72f5aea6d97f26d4a67da8f4bc5774b6cc7
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      with:
+        args: 'deployment started: {{ GITHUB_REF }}'
