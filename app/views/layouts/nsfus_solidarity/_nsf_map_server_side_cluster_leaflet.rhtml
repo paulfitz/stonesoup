@@ -188,6 +188,7 @@ function show_map(){
   	  require_type +
       open_ended_search_text;
   	jQuery.getJSON(url, function(data) {
+      console.log(data)
       displayResultsCount(data);
       var geojson_layer = L.geoJson(false, geojson_layer_options);
       geojson_layer.addData(data.clusters);
@@ -196,8 +197,8 @@ function show_map(){
       markerGroup.clearLayers();
       markerGroup.addLayer(geojson_layer);
       if (!mapMoved) {
-        let boundOptions = {};
-        if (data.clusters.features.length === 1 && data.single_points.features.length === 0) boundOptions.maxZoom = 11;
+        var boundOptions = {};
+        if (data.clusters.features.length === 1 && data.single_points.features.length === 0) boundOptions.maxZoom = 10;
         map.fitBounds(geojson_layer.getBounds(), boundOptions);
       }
     });
