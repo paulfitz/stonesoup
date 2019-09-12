@@ -188,7 +188,6 @@ function show_map(){
   	  require_type +
       open_ended_search_text;
   	jQuery.getJSON(url, function(data) {
-      console.log(data)
       displayResultsCount(data);
       var geojson_layer = L.geoJson(false, geojson_layer_options);
       geojson_layer.addData(data.clusters);
