@@ -34,7 +34,7 @@ function show_continental_US_map(div_name){
     // create a map in the "map" div, set the view to a given place and zoom
     var map = L.map(div_name, {
 	  attributionControl: true,
-      maxZoom: 18,
+      maxZoom: 15,
       minZoom: 2,
 	  zoomControl: false,
       scrollWheelZoom: false
@@ -154,6 +154,7 @@ function show_continental_US_map(div_name){
 
 	jQuery.getJSON("geosearch?bounds=" +
 		  map.getBounds().toBBoxString() +
+          '&maxZoom=10' +
 		  "&zoom=" + map.getZoom() +
 		  type_exclusion_queries,
 		  function(data){
