@@ -34,7 +34,7 @@ function show_continental_US_map(div_name){
     // create a map in the "map" div, set the view to a given place and zoom
     var map = L.map(div_name, {
 	  attributionControl: true,
-      maxZoom: 15,
+      maxZoom: 14,
       minZoom: 2,
 	  zoomControl: false,
       scrollWheelZoom: false
