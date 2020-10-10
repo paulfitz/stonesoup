@@ -79,8 +79,8 @@ L.control.zoom({position: 'topright'}).addTo(map);
 map.fitBounds([[x1-dx,y1-dy],[x2+dx,y2+dy]]);
 
 var mapbox =
-  'http://{s}.tiles.mapbox.com/v4/solidarityeconomy.d591ea8d' +
-  '/{z}/{x}/{y}.png?access_token={accessToken}'
+  'https://api.mapbox.com/styles/v1/{id}/tiles' +
+  '/{z}/{x}/{y}?access_token={accessToken}';
 
 var attrib =
 	"<a href='https://www.mapbox.com/about/maps/' " +
@@ -91,7 +91,10 @@ var attrib =
 L.tileLayer(mapbox, {
     attribution: attrib,
     maxZoom: 18,
-    accessToken: mapbox_accessToken
+    accessToken: mapbox_accessToken,
+    tileSize: 512,
+    zoomOffset: -1,
+    id: 'mapbox/streets-v11'
 }).addTo(map);
 
 /**  solidarity-specific part ends here   */

@@ -94,12 +94,15 @@ function show_continental_US_map(div_name){
     markerGroup.addTo(map);
 
     var tile_layer = L.tileLayer(
-	'http://{s}.tiles.mapbox.com/v4/solidarityeconomy.d591ea8d' +
-	'/{z}/{x}/{y}.png?access_token={accessToken}',
-	{
-	    maxZoom: 18, // is this needed?
-	    attribution: atrib,
-	    accessToken: mapbox_accessToken
+      'https://api.mapbox.com/styles/v1/{id}/tiles' +
+        '/{z}/{x}/{y}?access_token={accessToken}',
+      {
+          maxZoom: 18, // is this needed?
+          attribution: atrib,
+          accessToken: mapbox_accessToken,
+          tileSize: 512,
+          zoomOffset: -1,
+          id: 'mapbox/streets-v11'
 	}
     );
 

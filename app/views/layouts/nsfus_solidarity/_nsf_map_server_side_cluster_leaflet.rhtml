@@ -107,8 +107,9 @@ function show_map(){
 		  {padding: [20, 20]}
   );
 
-  var mapbox = 'https://{s}.tiles.mapbox.com/v4/solidarityeconomy.d591ea8d' +
-  '/{z}/{x}/{y}.png?access_token={accessToken}'
+  var mapbox =
+    'https://api.mapbox.com/styles/v1/{id}/tiles' +
+    '/{z}/{x}/{y}?access_token={accessToken}';
 
   var attrib = "<a href='https://www.mapbox.com/about/maps/' " +
 	    "target='_blank'>&copy; Mapbox &copy; " +
@@ -130,9 +131,12 @@ function show_map(){
   markerGroup.addTo(map);
 
   L.tileLayer(mapbox, {
-      attribution: attrib,
-      maxZoom: 18,
-      accessToken: mapbox_accessToken
+    attribution: attrib,
+    maxZoom: 18,
+    accessToken: mapbox_accessToken,
+    tileSize: 512,
+    zoomOffset: -1,
+    id: 'mapbox/streets-v11'
   }).addTo(map);
   map.attributionControl.setPrefix(
       '<a href="http://leafletjs.com" ' +
